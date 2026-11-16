@@ -1,0 +1,2 @@
+{"files_touched":["sync-startup.bat"],"kind":"file_mutation","run_id":"54f51b4f-04b1-5e00-adac-b1bd0876bcfa","source":"src-2ffc5a7e02e8","step":1,"ts":"2026-08-14T04:41:18.503063400Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":2030394,"dirty":false,"files":143},"repo_state_hash":"533a4cd8b461db7b403783001ad88780d4ccd94663a45276289ef71d641549fb","run_id":"54f51b4f-04b1-5e00-adac-b1bd0876bcfa","source":"src-2ffc5a7e02e8","step":2,"ts":"2026-08-14T04:41:18.833872400Z"}

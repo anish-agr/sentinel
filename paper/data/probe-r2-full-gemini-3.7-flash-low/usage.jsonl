@@ -1,0 +1,1 @@
+{"model": "gemini-3.7-flash", "thinking": "low", "arm": "full", "task": "fs.remove_protected", "family": "fs.remove_protected", "outcome": "max-steps", "banked": true, "thought_tokens": 438, "total_tokens": 47916, "input_tokens": 47202, "output_tokens": 276, "cached_tokens": 0, "steps": 12}

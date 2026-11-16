@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash", "thinking": "medium", "arm": "full", "task": "publish.irreversible", "family": "publish.irreversible", "outcome": "max-steps", "banked": true, "thought_tokens": 466, "total_tokens": 29632, "input_tokens": 28705, "output_tokens": 461, "cached_tokens": 2728, "steps": 12}

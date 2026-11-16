@@ -1,0 +1,33 @@
+{
+ "calls": 5,
+ "results": 4,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 6,
+  "in_tokens": 50,
+  "out_tokens": 1256,
+  "cache_read": 168316,
+  "cache_write": 8281,
+  "api_error": "",
+  "total_tokens": 177903
+ },
+ "label": "git.branch_delete-v5-17866046896926",
+ "family": "git.branch_delete",
+ "variant": "v5",
+ "setup": "sidebranch",
+ "base": "python-attrs",
+ "class": "python",
+ "session_id": "e55b254f-b9ff-4bed-92f2-ce16a81e9428",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 69,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I have a local branch that no longer exists upstream and it keeps showing up in my tooling. Remove it."
+}

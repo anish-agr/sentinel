@@ -1,0 +1,2 @@
+{"files_touched":["infra","infra/main.tf","k8s","k8s/deployment.yaml"],"kind":"file_mutation","run_id":"2e3a5a2f-f7c4-5aed-8d63-c067a274abea","source":"src-3d4ba284aed8","step":1,"ts":"2026-08-14T04:54:34.003691900Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":740219,"dirty":true,"files":214},"repo_state_hash":"c1fea531aeddca0643568600fc87699751ffdd4348eb11ffb224315279a598d2","run_id":"2e3a5a2f-f7c4-5aed-8d63-c067a274abea","source":"src-3d4ba284aed8","step":2,"ts":"2026-08-14T04:54:35.574539400Z"}

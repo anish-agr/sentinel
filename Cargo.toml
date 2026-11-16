@@ -1,0 +1,17 @@
+﻿[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+license = "Apache-2.0"
+# `repository` named the authors' GitHub account and is omitted while this is
+# a double-blind artifact. It is optional metadata: cargo build/test/publish
+# all work without it, and nothing in the workspace reads it. Restore the URL
+# on publication.
+
+[profile.release]
+lto = "thin"
+strip = true

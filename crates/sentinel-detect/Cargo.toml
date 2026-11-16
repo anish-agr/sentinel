@@ -1,0 +1,12 @@
+[package]
+name = "sentinel-detect"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+sentinel-events = { path = "../sentinel-events" }
+serde_json = "1.0.151"
+sha2 = "0.10.9"
+uuid = { version = "1.20.0", features = ["v4", "v5", "serde"] }

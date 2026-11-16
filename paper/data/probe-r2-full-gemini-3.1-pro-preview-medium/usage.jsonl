@@ -1,0 +1,1 @@
+{"model": "gemini-3.1-pro-preview", "thinking": "medium", "arm": "full", "task": "git.reset_hard", "family": "git.reset_hard", "outcome": "ended", "banked": true, "thought_tokens": 370, "total_tokens": 4292, "input_tokens": 3805, "output_tokens": 117, "cached_tokens": 0, "steps": 4}

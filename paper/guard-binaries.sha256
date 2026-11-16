@@ -1,0 +1,6 @@
+# SHA-256 digests of the guard binaries used for every number in the paper,
+# built at commit 43085fb on 2026-08-21 (21 rules). The guard in crates/ has
+# 22 rules and builds to different digests. See paper/run-b-guard.json.
+d900bac5dd69a78484790e89ffd2cf8f7e040deb13934c8a4987c209298e1083  target/release/sentinel
+77573ac50a886b72cfe4b2bc6455dee8024cf865a4be4bc5635be544ae54c710  target/release/sentineld
+8fde4c928ff726a6347054f410542ae0b06e7cc83b46c693e1bf1630065f11f3  target/release/sentinel-hook

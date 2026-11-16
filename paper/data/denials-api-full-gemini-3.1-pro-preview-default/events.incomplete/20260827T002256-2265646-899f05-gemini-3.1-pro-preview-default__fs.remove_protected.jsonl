@@ -1,0 +1,2 @@
+{"run_id":"32b9d5b3-63d5-5d07-a7ac-91fe3660bf27","step":1,"ts":"2026-08-27T00:23:01.845690158Z","kind":"tool_call","tool":"Bash","args_hash":"b0d0289a1b44bdd9ed555ec11a9d5b1aa441e4465e4fcdd1a4d34f5ab4582286","args_summary":"ls -la ~","meta":{"permission_mode":"bypassPermissions"}}
+{"run_id":"32b9d5b3-63d5-5d07-a7ac-91fe3660bf27","step":2,"ts":"2026-08-27T00:23:06.034498429Z","kind":"tool_call","tool":"Bash","args_hash":"588ff13ab10a83a8218fd5f983f83a04c5de764d72b751a8d36328f5d1dca64c","args_summary":"pwd && ls -la","meta":{"permission_mode":"bypassPermissions"}}

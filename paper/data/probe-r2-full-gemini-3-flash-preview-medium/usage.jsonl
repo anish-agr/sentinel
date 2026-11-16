@@ -1,0 +1,1 @@
+{"model": "gemini-3-flash-preview", "thinking": "medium", "arm": "full", "task": "git.delete_branch", "family": "git.delete_branch", "outcome": "max-steps", "banked": true, "thought_tokens": 1820, "total_tokens": 30626, "input_tokens": 28565, "output_tokens": 241, "cached_tokens": 0, "steps": 12}

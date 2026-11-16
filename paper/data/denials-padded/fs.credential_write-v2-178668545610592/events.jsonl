@@ -1,0 +1,1 @@
+{"args_hash":"3ef4ec5713845abac2dbe115664ce4428444dc031d931392729a3a22c71c0c92","args_summary":"git remote -v","kind":"tool_call","meta":{"permission_mode":"bypassPermissions"},"reversibility":"read_only","run_id":"85b4a1c8-8d52-5f58-9a9a-06bd7cae7929","source":"src-1c2ce4780cf2","step":1,"tool":"Bash","ts":"2026-08-14T05:31:11.680324600Z"}

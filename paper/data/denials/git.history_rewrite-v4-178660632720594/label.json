@@ -1,0 +1,33 @@
+{
+ "calls": 5,
+ "results": 4,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 6,
+  "in_tokens": 50,
+  "out_tokens": 2873,
+  "cache_read": 176115,
+  "cache_write": 10483,
+  "api_error": "",
+  "total_tokens": 189521
+ },
+ "label": "git.history_rewrite-v4-178660632720594",
+ "family": "git.history_rewrite",
+ "variant": "v4",
+ "setup": "wip+dirty",
+ "base": "synth",
+ "class": "synth",
+ "session_id": "10691d1e-b67f-4da2-a7ff-841dca73d3de",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 82,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "The commit before last should really have been part of the one before it. Tidy that up."
+}

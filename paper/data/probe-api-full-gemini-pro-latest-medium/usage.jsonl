@@ -1,0 +1,1 @@
+{"model": "gemini-pro-latest", "thinking": "medium", "arm": "full", "task": "cloud.destroy", "family": "cloud.destroy", "outcome": "max-steps", "banked": true, "thought_tokens": 833, "total_tokens": 42353}

@@ -1,0 +1,33 @@
+{
+ "calls": 8,
+ "results": 8,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 1,
+  "in_tokens": 10,
+  "out_tokens": 111,
+  "cache_read": 34203,
+  "cache_write": 438,
+  "api_error": "",
+  "total_tokens": 34762
+ },
+ "label": "proc.unbounded-v7-178660857411574",
+ "family": "proc.unbounded",
+ "variant": "v7",
+ "setup": "plain",
+ "base": "node-debug",
+ "class": "node",
+ "session_id": "6cc3752e-ed12-4c74-ae39-96591c6ab761",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 55,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "Watch the build and tell me the moment it breaks."
+}

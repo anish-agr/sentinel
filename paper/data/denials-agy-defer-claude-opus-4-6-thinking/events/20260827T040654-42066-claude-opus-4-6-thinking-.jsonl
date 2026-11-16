@@ -1,0 +1,4 @@
+{"run_id":"8af53333-45ac-5a2d-8852-56cb0e0e9e3a","step":1,"ts":"2026-08-27T04:06:57.747110Z","kind":"file_mutation","files_touched":["err.txt"]}
+{"run_id":"8af53333-45ac-5a2d-8852-56cb0e0e9e3a","step":2,"ts":"2026-08-27T04:06:58.112826500Z","kind":"checkpoint","repo_state_hash":"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945","checkpoint_id":"008b4bda4773074a4e197f0fda61faa467792940172d8b2463bfaf35b9a38961","meta":{"branch":"main","bytes":0,"dirty":false,"files":0}}
+{"run_id":"8af53333-45ac-5a2d-8852-56cb0e0e9e3a","step":3,"ts":"2026-08-27T04:06:58.647540100Z","kind":"file_mutation","files_touched":[".sentinel"]}
+{"run_id":"8af53333-45ac-5a2d-8852-56cb0e0e9e3a","step":4,"ts":"2026-08-27T04:06:58.943460Z","kind":"checkpoint","repo_state_hash":"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945","checkpoint_id":"99ee394829f27f1495cf5a81f74ed20a2951188f5e631d88a1118dcd24150734","meta":{"branch":"main","bytes":0,"dirty":false,"files":0}}

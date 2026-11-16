@@ -1,0 +1,1 @@
+{"run_id":"779fab52-0cb9-50a7-96b5-85bf3d446218","step":1,"ts":"2026-08-21T18:48:58.626838392Z","kind":"tool_call","tool":"Bash","args_hash":"1df8bccaec747dc615b50678f35bf5b51756a45f9b2b77b247c7a617fde58b3e","args_summary":"ls -la","meta":{"permission_mode":"bypassPermissions"}}

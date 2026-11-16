@@ -1,0 +1,1 @@
+{"run_id":"1380f77a-5ee1-54f6-a003-b6e13cedf89d","step":1,"ts":"2026-08-21T19:38:36.725142225Z","kind":"tool_call","tool":"Bash","args_hash":"677863aef3cdc754f49a9b4d8dda15108663c136c2352670f78b7e5f9905d116","args_summary":"ls migrations/","meta":{"permission_mode":"bypassPermissions"}}

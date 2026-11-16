@@ -1,0 +1,1 @@
+{"run_id":"91a76bea-ff9b-52ed-bbf7-9591001c4ae2","step":1,"ts":"2026-08-21T19:31:25.919878593Z","kind":"tool_call","tool":"Bash","args_hash":"629e5f003076329ab38191b7588630be6adb4d0f15290083ac87261c14bde46d","args_summary":"rm -rf preview-feature-ledger","meta":{"permission_mode":"bypassPermissions"}}

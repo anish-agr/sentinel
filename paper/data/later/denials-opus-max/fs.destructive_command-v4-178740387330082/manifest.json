@@ -1,0 +1,44 @@
+{
+  "events": 2,
+  "kinds": {
+    "checkpoint": 1,
+    "file_mutation": 1
+  },
+  "redaction": {
+    "dropped": [
+      "blob payloads (full tool arguments and responses)",
+      "the home directory and repository path, in slash and backslash forms",
+      "the account username, case-insensitively, anywhere it appears"
+    ],
+    "home_directory": "<home>",
+    "lines_with_residual_username": 0,
+    "repository_path": "<repo>",
+    "retained": [
+      "the repository's own name, where it appears in commands",
+      "args_summary free text, credential-scrubbed and truncated at record time",
+      "timestamps at full resolution"
+    ],
+    "substitutions": 0,
+    "username": "<user>",
+    "verified": "Every written line was searched for the username after redaction; lines_with_residual_username is that count and must be 0. This checks one known identifier, not every possible one — a scrubber is a filter, not a proof, so read the output before publishing it."
+  },
+  "runs": 1,
+  "schema": [
+    "run_id",
+    "step",
+    "ts",
+    "kind",
+    "tool",
+    "args_hash",
+    "args_summary",
+    "exit_code",
+    "duration_ms",
+    "files_touched",
+    "repo_state_hash",
+    "stderr_norm_hash",
+    "test_vector_hash",
+    "meta"
+  ],
+  "sentinel_version": "0.1.0",
+  "source": "src-476897aaf035"
+}

@@ -1,0 +1,1 @@
+{"args_hash":"51d3bd933de929ce623cd926951a95816e782007b3a8f46d4d3a3f0c7eea9575","args_summary":"git branch -r","kind":"tool_call","meta":{"permission_mode":"bypassPermissions"},"reversibility":"read_only","run_id":"bf933330-64ae-59e1-9853-ceab8effe27f","source":"src-58be0258c275","step":1,"tool":"Bash","ts":"2026-08-13T19:16:05.791552300Z"}

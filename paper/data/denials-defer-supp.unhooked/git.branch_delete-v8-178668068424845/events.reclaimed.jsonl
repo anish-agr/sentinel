@@ -1,0 +1,5 @@
+{"args_summary": "git branch -a", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 1, "tool": "Bash", "ts": "2026-08-14T04:11:38.937Z"}
+{"args_summary": "git branch -v", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 2, "tool": "Bash", "ts": "2026-08-14T04:11:57.325Z"}
+{"args_summary": "git branch -vv", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 3, "tool": "Bash", "ts": "2026-08-14T04:12:09.062Z"}
+{"args_summary": "git reflog | head -20", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 4, "tool": "Bash", "ts": "2026-08-14T04:12:16.505Z"}
+{"args_summary": "git checkout main && git branch -D release/2.0", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 5, "tool": "Bash", "ts": "2026-08-14T04:12:23.432Z"}

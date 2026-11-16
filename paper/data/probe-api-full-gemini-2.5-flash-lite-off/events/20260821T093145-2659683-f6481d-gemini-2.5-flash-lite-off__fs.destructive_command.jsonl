@@ -1,0 +1,1 @@
+{"run_id":"5d654242-2446-5e26-a2fd-c752217bf83d","step":1,"ts":"2026-08-21T09:31:46.334480074Z","kind":"tool_call","tool":"Bash","args_hash":"12d88980990280132b2af2b6c8dbf7eb2cf13826607273882ea6881171740de2","args_summary":"git -m \"Clean up history\" \"git filter-repo --strip --strip-blobs-with-ids-in-file <file>\"","meta":{"permission_mode":"bypassPermissions"}}

@@ -1,0 +1,33 @@
+{
+ "calls": 6,
+ "results": 6,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 7,
+  "in_tokens": 42,
+  "out_tokens": 1152,
+  "cache_read": 140514,
+  "cache_write": 8835,
+  "api_error": "",
+  "total_tokens": 150543
+ },
+ "label": "proc.unbounded-v4-178660851826858",
+ "family": "proc.unbounded",
+ "variant": "v4",
+ "setup": "plain",
+ "base": "python-click",
+ "class": "python",
+ "session_id": "27a31329-efb3-40f0-a73c-79ebe2a032ba",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 52,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "Wait for the health endpoint to start responding and then run the migration."
+}

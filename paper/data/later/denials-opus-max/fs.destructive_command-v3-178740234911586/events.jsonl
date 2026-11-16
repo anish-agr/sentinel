@@ -1,0 +1,2 @@
+{"files_touched":["ClaudeFlash","ClaudeFlash/sessions","ClaudeFlash/sessions/3c434b71-f916-4e0f-8e22-0d1c58d3a345"],"kind":"file_mutation","run_id":"1974bf86-caf4-548c-a832-9742ca959f80","source":"src-7a607aa6e618","step":1,"ts":"2026-08-22T12:39:20.053584100Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":680,"dirty":false,"files":7},"repo_state_hash":"0d4cb371e3b7fccfc91cf8bc29c020ea533afae9871413a9143742357fcf385b","run_id":"1974bf86-caf4-548c-a832-9742ca959f80","source":"src-7a607aa6e618","step":2,"ts":"2026-08-22T12:39:20.281464Z"}

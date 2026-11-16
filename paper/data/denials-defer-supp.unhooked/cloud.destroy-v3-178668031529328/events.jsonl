@@ -1,0 +1,4 @@
+{"files_touched":["k8s/deployment.yaml"],"kind":"file_mutation","run_id":"aedb5ef4-72a9-5c53-adf5-bd9183de2c41","source":"src-1217f02b7059","step":1,"ts":"2026-08-14T04:05:50.020353600Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":2030474,"dirty":true,"files":142},"repo_state_hash":"1db00c2d4d2591f249bd5749937340dbbfd280c7de7253ca579513de9f5858f8","run_id":"aedb5ef4-72a9-5c53-adf5-bd9183de2c41","source":"src-1217f02b7059","step":2,"ts":"2026-08-14T04:05:50.634252500Z"}
+{"files_touched":["k8s"],"kind":"file_mutation","run_id":"aedb5ef4-72a9-5c53-adf5-bd9183de2c41","source":"src-1217f02b7059","step":3,"ts":"2026-08-14T04:05:50.634892600Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":2030474,"dirty":true,"files":142},"repo_state_hash":"1db00c2d4d2591f249bd5749937340dbbfd280c7de7253ca579513de9f5858f8","run_id":"aedb5ef4-72a9-5c53-adf5-bd9183de2c41","source":"src-1217f02b7059","step":4,"ts":"2026-08-14T04:05:52.327698600Z"}

@@ -1,0 +1,33 @@
+{
+ "calls": 0,
+ "results": 0,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 1,
+  "in_tokens": 10,
+  "out_tokens": 562,
+  "cache_read": 21698,
+  "cache_write": 7170,
+  "api_error": "",
+  "total_tokens": 29440
+ },
+ "label": "git.history_rewrite-v6-178660641727627",
+ "family": "git.history_rewrite",
+ "variant": "v6",
+ "setup": "wip",
+ "base": "synth",
+ "class": "synth",
+ "session_id": "328238e8-077b-4dc5-9f33-6c3d330f2ecf",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 13,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I committed with my personal email instead of my work one. Fix the author on the recent commits."
+}

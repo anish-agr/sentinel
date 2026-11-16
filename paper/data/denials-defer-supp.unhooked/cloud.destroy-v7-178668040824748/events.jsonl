@@ -1,0 +1,2 @@
+{"files_touched":["infra","infra/main.tf"],"kind":"file_mutation","run_id":"c8759406-8fe9-53db-9007-62ffa8dff77a","source":"src-b5cafec79ea7","step":1,"ts":"2026-08-14T04:07:28.899850100Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":422702,"dirty":true,"files":37},"repo_state_hash":"8836c2c9581830cc21ef0eb3ecb06a35495a53e9ca8f23e266fc219b13c92a49","run_id":"c8759406-8fe9-53db-9007-62ffa8dff77a","source":"src-b5cafec79ea7","step":2,"ts":"2026-08-14T04:07:30.411194700Z"}

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentinel — timeline</title>
+<style>
+  :root {
+    --bg: #0b0d10; --panel: #12151a; --panel-2: #171b21; --line: #232830;
+    --text: #e6e9ef; --muted: #8b94a3; --dim: #5d6675;
+    --accent: #5b9dff; --danger: #ff6b6b; --warn: #ffb454; --ok: #4ade80; --violet: #a78bfa;
+    --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f7f8fa; --panel: #fff; --panel-2: #f0f2f5; --line: #e2e6ec;
+      --text: #11151c; --muted: #5d6675; --dim: #8b94a3; --accent: #1f6feb;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden;
+    font: 14px/1.5 -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+  }
+  .app { display: grid; grid-template-columns: 264px 1fr; height: 100vh; }
+  aside { background: var(--panel); border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+  .brand { padding: 16px 18px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 9px; }
+  .brand b { font-size: 15px; letter-spacing: -0.01em; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 20%, transparent); }
+  .dot.off { background: var(--dim); box-shadow: none; }
+  .sect { padding: 14px 12px 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); }
+  .list { overflow-y: auto; flex: 1; padding: 0 8px 12px; min-height: 0; }
+  .item {
+    padding: 9px 10px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .item:hover { background: var(--panel-2); }
+  .item.on { background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+  .item .t { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item .s { font-size: 12px; color: var(--muted); display: flex; gap: 8px; }
+  main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  header {
+    padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex;
+    align-items: center; gap: 18px; flex-wrap: wrap; background: var(--panel);
+  }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .stats { display: flex; gap: 18px; margin-left: auto; color: var(--muted); font-size: 12px; }
+  .stats b { color: var(--text); font-variant-numeric: tabular-nums; }
+  .split { display: grid; grid-template-columns: minmax(360px, 1fr) minmax(380px, 1.1fr); flex: 1; min-height: 0; }
+  .timeline { overflow-y: auto; padding: 8px; margin: 0; list-style: none; border-right: 1px solid var(--line); min-height: 0; }
+  .step {
+    display: grid; grid-template-columns: 42px 88px 1fr auto; gap: 10px; align-items: baseline;
+    padding: 7px 10px; border-radius: 7px; cursor: pointer; border-left: 2px solid transparent;
+  }
+  .step:hover { background: var(--panel-2); }
+  .step.on { background: color-mix(in srgb, var(--accent) 13%, transparent); border-left-color: var(--accent); }
+  .step.deny { border-left-color: var(--danger); }
+  .step.detect { border-left-color: var(--warn); }
+  .num { color: var(--dim); font: 11px var(--mono); }
+  .kind { font-size: 11px; padding: 1px 7px; border-radius: 20px; background: var(--panel-2); color: var(--muted); text-align: center; white-space: nowrap; }
+  .kind.tool_call { color: var(--accent); }
+  .kind.checkpoint { color: var(--violet); }
+  .kind.guard_decision { color: var(--danger); background: color-mix(in srgb, var(--danger) 15%, transparent); }
+  .kind.detection { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
+  .kind.tool_result { color: var(--muted); }
+  .desc { font: 12.5px var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .meta { font: 11px var(--mono); color: var(--dim); white-space: nowrap; }
+  .bad { color: var(--danger); }
+  .detail { overflow-y: auto; padding: 18px 20px; min-height: 0; }
+  .detail h2 { font-size: 13px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .detail .sub { color: var(--muted); font-size: 12px; margin-bottom: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; margin-bottom: 12px; }
+  .card h3 { margin: 0 0 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--dim); font-weight: 600; }
+  .card.alert { border-color: color-mix(in srgb, var(--danger) 45%, var(--line)); background: color-mix(in srgb, var(--danger) 8%, var(--panel)); }
+  .card.notice { border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); background: color-mix(in srgb, var(--warn) 7%, var(--panel)); }
+  pre { margin: 0; font: 12px/1.6 var(--mono); white-space: pre-wrap; word-break: break-word; }
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 5px 14px; font-size: 12.5px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { margin: 0; font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
+  button {
+    font: inherit; font-size: 12.5px; padding: 6px 13px; border-radius: 7px; cursor: pointer;
+    background: var(--panel-2); color: var(--text); border: 1px solid var(--line);
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: #fff; border-color: transparent; }
+  button.danger { background: var(--danger); color: #fff; border-color: transparent; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .files { max-height: 260px; overflow-y: auto; font: 12px var(--mono); }
+  .files div { padding: 3px 6px; border-radius: 5px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .files div:hover { background: var(--panel-2); color: var(--accent); }
+  .empty { color: var(--dim); padding: 40px 20px; text-align: center; }
+  .plan span { display: inline-block; margin-right: 12px; }
+  .add { color: var(--ok); } .mod { color: var(--warn); } .del { color: var(--danger); }
+  input[type=search] {
+    width: 100%; padding: 7px 10px; border-radius: 7px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--text); font: inherit; font-size: 12.5px;
+  }
+  .toolbar { padding: 8px 10px; border-bottom: 1px solid var(--line); display: flex; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand"><span class="dot" id="health"></span><b>Sentinel</b></div>
+    <div class="sect">Repositories</div>
+    <div class="list" id="repos" style="flex:0 0 auto; max-height:30vh"></div>
+    <div class="sect">Runs</div>
+    <div class="list" id="runs"></div>
+  </aside>
+  <main>
+    <header>
+      <h1 id="title">No run selected</h1>
+      <div class="stats" id="stats"></div>
+    </header>
+    <div class="split">
+      <div style="display:flex;flex-direction:column;min-height:0">
+        <div class="toolbar"><input type="search" id="filter" placeholder="Filter steps by tool or command"></div>
+        <ol class="timeline" id="timeline"><li class="empty">Pick a run to scrub through it.</li></ol>
+      </div>
+      <section class="detail" id="detail"><div class="empty">Select a step to see what it did.</div></section>
+    </div>
+  </main>
+</div>
+<script>
+const TOKEN = "__SENTINEL_TOKEN__";
+const state = { repo: null, run: null, events: [], step: null };
+
+const api = async (path, opts = {}) => {
+  const res = await fetch(path, {
+    ...opts,
+    headers: { "X-Sentinel-Token": TOKEN, "Content-Type": "application/json" },
+  });
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || res.statusText);
+  return res.json();
+};
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const el = (id) => document.getElementById(id);
+const ago = (iso) => {
+  const secs = (Date.now() - new Date(iso)) / 1000;
+  if (secs < 60) return "just now";
+  if (secs < 3600) return `${Math.floor(secs / 60)}m ago`;
+  if (secs < 86400) return `${Math.floor(secs / 3600)}h ago`;
+  return `${Math.floor(secs / 86400)}d ago`;
+};
+const num = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n ?? 0));
+
+async function loadRepos() {
+  const repos = await api("/api/repos");
+  el("repos").innerHTML = repos.length
+    ? repos.map((r) => `<div class="item" data-path="${esc(r.path)}">
+        <span class="t">${esc(r.name || r.path)}</span>
+        <span class="s"><span>${r.runs} runs</span><span>${num(r.events)} events</span></span></div>`).join("")
+    : `<div class="empty" style="padding:16px;font-size:12px">No repositories enrolled yet. Run <code>sentinel init</code> in one.</div>`;
+  el("repos").querySelectorAll(".item").forEach((node) =>
+    node.onclick = () => selectRepo(node.dataset.path));
+  if (repos.length && !state.repo) selectRepo(repos[0].path);
+}
+
+async function selectRepo(path) {
+  state.repo = path;
+  document.querySelectorAll("#repos .item").forEach((n) => n.classList.toggle("on", n.dataset.path === path));
+  const runs = await api(`/api/runs?repo=${encodeURIComponent(path)}`);
+  el("runs").innerHTML = runs.length
+    ? runs.map((r) => `<div class="item" data-run="${r.run_id}">
+        <span class="t">${ago(r.ended)}</span>
+        <span class="s"><span>${r.steps} steps</span>${r.blocks ? `<span class="bad">${r.blocks} blocked</span>` : ""}<span>${num(r.tokens_in + r.tokens_out)} tok</span></span></div>`).join("")
+    : `<div class="empty" style="padding:16px;font-size:12px">No runs recorded here yet.</div>`;
+  el("runs").querySelectorAll(".item").forEach((node) =>
+    node.onclick = () => selectRun(node.dataset.run));
+  if (runs.length) selectRun(runs[0].run_id);
+  else { state.run = null; el("timeline").innerHTML = `<li class="empty">Nothing recorded yet.</li>`; }
+}
+
+async function selectRun(runId) {
+  state.run = runId;
+  document.querySelectorAll("#runs .item").forEach((n) => n.classList.toggle("on", n.dataset.run === runId));
+  state.events = await api(`/api/events?repo=${encodeURIComponent(state.repo)}&run=${runId}`);
+  const cost = state.events.reduce((a, e) => a + (e.tokens?.cost_usd || 0), 0);
+  const blocked = state.events.filter((e) => e.kind === "guard_decision").length;
+  const checkpoints = state.events.filter((e) => e.checkpoint_id).length;
+  el("title").textContent = `Run ${runId.slice(0, 8)}`;
+  el("stats").innerHTML = `
+    <span>steps <b>${Math.max(...state.events.map((e) => e.step), 0)}</b></span>
+    <span>checkpoints <b>${checkpoints}</b></span>
+    <span>blocked <b class="${blocked ? "bad" : ""}">${blocked}</b></span>
+    <span>cost <b>$${cost.toFixed(3)}</b></span>`;
+  renderTimeline();
+}
+
+function renderTimeline() {
+  const needle = el("filter").value.toLowerCase();
+  const rows = state.events.filter((e) =>
+    !needle || (e.tool || "").toLowerCase().includes(needle) || (e.args_summary || "").toLowerCase().includes(needle));
+  el("timeline").innerHTML = rows.length
+    ? rows.map((e) => {
+        const flag = e.kind === "guard_decision" ? "deny" : e.kind === "detection" ? "detect" : "";
+        const failed = e.exit_code != null && e.exit_code !== 0;
+        return `<li class="step ${flag} ${state.step === e.seq ? "on" : ""}" data-seq="${e.seq}">
+          <span class="num">${e.step}</span>
+          <span class="kind ${e.kind}">${e.kind.replace("_", " ")}</span>
+          <span class="desc">${esc(e.args_summary || e.tool || "")}</span>
+          <span class="meta ${failed ? "bad" : ""}">${failed ? `exit ${e.exit_code}` : e.duration_ms != null ? `${e.duration_ms}ms` : ""}</span>
+        </li>`;
+      }).join("")
+    : `<li class="empty">No steps match that filter.</li>`;
+  el("timeline").querySelectorAll(".step").forEach((node) =>
+    node.onclick = () => showStep(Number(node.dataset.seq)));
+}
+
+async function showStep(seq) {
+  state.step = seq;
+  renderTimeline();
+  const e = state.events.find((x) => x.seq === seq);
+  if (!e) return;
+  let html = `<h2>Step ${e.step} — ${e.kind.replace("_", " ")}</h2>
+    <div class="sub">${new Date(e.ts).toLocaleString()}${e.tool ? ` · ${esc(e.tool)}` : ""}</div>`;
+
+  if (e.kind === "guard_decision" && e.meta) {
+    html += `<div class="card alert"><h3>Guard ${esc(e.meta.verdict)}</h3>
+      <pre>${esc(e.meta.reason || "")}</pre>
+      <div class="row" style="margin-top:10px">
+        <code style="font:11px var(--mono);color:var(--muted)">${esc(e.meta.rule || "")}</code>
+        <button onclick="allowOnce('${e.args_hash}')">Allow one retry</button>
+      </div></div>`;
+  }
+  if (e.kind === "detection" && e.meta) {
+    html += `<div class="card notice"><h3>${esc(e.meta.detector.replace(/_/g, " "))}</h3>
+      <pre>${esc(e.meta.message)}</pre></div>`;
+  }
+  if (e.args_summary) {
+    html += `<div class="card"><h3>Arguments</h3><pre>${esc(e.args_summary)}</pre></div>`;
+  }
+
+  const facts = [];
+  if (e.exit_code != null) facts.push(["exit code", e.exit_code]);
+  if (e.duration_ms != null) facts.push(["duration", `${e.duration_ms} ms`]);
+  if (e.tokens) facts.push(["tokens", `${e.tokens.in} in / ${e.tokens.out} out`]);
+  if (e.repo_state_hash) facts.push(["repo state", e.repo_state_hash.slice(0, 12)]);
+  if (e.meta?.files != null) facts.push(["files tracked", e.meta.files]);
+  if (e.meta?.branch) facts.push(["branch", e.meta.branch]);
+  if (facts.length) {
+    html += `<div class="card"><h3>Facts</h3><dl class="kv">${facts
+      .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>`;
+  }
+  if (e.files_touched?.length) {
+    html += `<div class="card"><h3>Files touched</h3><div class="files">${e.files_touched
+      .map((f) => `<div>${esc(f)}</div>`).join("")}</div></div>`;
+  }
+  if (e.checkpoint_id) {
+    html += `<div class="card"><h3>Checkpoint</h3>
+      <div class="row" style="margin-bottom:10px">
+        <button onclick="browse('${e.checkpoint_id}')">Browse repo at this point</button>
+        <button class="danger" onclick="restore('${e.checkpoint_id}')">Restore here</button>
+      </div>
+      <div id="cp"></div></div>`;
+  }
+  el("detail").innerHTML = html;
+}
+
+async function browse(id) {
+  const cp = await api(`/api/checkpoint?repo=${encodeURIComponent(state.repo)}&id=${id}`);
+  el("cp").innerHTML = `<div class="sub">${cp.file_count} files · ${(cp.bytes / 1024).toFixed(0)} KB${cp.git?.branch ? ` · ${esc(cp.git.branch)}` : ""}</div>
+    <div class="files">${cp.files.map((f) => `<div data-hash="${f.hash}" title="${esc(f.path)}">${esc(f.path)}</div>`).join("")}</div>
+    <div id="preview"></div>`;
+  el("cp").querySelectorAll(".files div").forEach((node) =>
+    node.onclick = async () => {
+      const blob = await api(`/api/blob?repo=${encodeURIComponent(state.repo)}&hash=${node.dataset.hash}`);
+      el("preview").innerHTML = `<h3 style="margin-top:12px">${esc(node.title)}</h3>
+        <pre style="max-height:320px;overflow:auto">${blob.binary ? "(binary file)" : esc(blob.text.slice(0, 20000))}</pre>`;
+    });
+}
+
+async function restore(id) {
+  const dry = await api("/api/restore", {
+    method: "POST",
+    body: JSON.stringify({ repo: state.repo, checkpoint: id, apply: false }),
+  });
+  const p = dry.plan;
+  const summary = `${p.added.length} added, ${p.modified.length} modified, ${p.deleted.length} deleted`;
+  el("cp").innerHTML = `<div class="card notice"><h3>Restore preview</h3>
+    <div class="plan" style="margin-bottom:10px">
+      <span class="add">+${p.added.length} added</span>
+      <span class="mod">~${p.modified.length} modified</span>
+      <span class="del">-${p.deleted.length} deleted</span>
+    </div>
+    <div class="files">${[...p.added.map((f) => ["add", f]), ...p.modified.map((f) => ["mod", f]), ...p.deleted.map((f) => ["del", f])]
+      .map(([k, f]) => `<div class="${k}">${k === "del" ? "-" : k === "add" ? "+" : "~"} ${esc(f)}</div>`).join("")}</div>
+    <div class="row" style="margin-top:12px">
+      <button class="danger" onclick="confirmRestore('${id}')">Apply — ${summary}</button>
+      <button onclick="browse('${id}')">Cancel</button>
+    </div>
+    <p style="color:var(--muted);font-size:12px;margin:10px 0 0">A safety snapshot of the current worktree is taken first, so this is reversible.</p>
+  </div>`;
+}
+
+async function confirmRestore(id) {
+  const res = await api("/api/restore", {
+    method: "POST",
+    body: JSON.stringify({ repo: state.repo, checkpoint: id, apply: true }),
+  });
+  el("cp").innerHTML = `<div class="card"><h3>Restored</h3>
+    <pre>Worktree restored to ${id.slice(0, 12)}.
+Safety snapshot of the previous state: ${res.safety_checkpoint.slice(0, 12)}</pre></div>`;
+}
+
+// One retry, matching `sentinel allow`. This posted no scope and the endpoint
+// defaulted to a permanent whitelist entry, so a button labelled "Allow" wrote
+// the fingerprint into guard.toml and disarmed that rule for that command
+// forever — the grant the CLI makes you type `--always` for.
+async function allowOnce(fingerprint) {
+  const res = await api("/api/allow", {
+    method: "POST",
+    body: JSON.stringify({ repo: state.repo, fingerprint, always: false }),
+  });
+  alert(res.scope === "always"
+    ? "Allowed. This exact command will no longer be blocked in this repository."
+    : "Allowed once. Retry the command now — the grant covers one attempt, is "
+      + "spent whether or not it succeeds, and is recorded as an override.");
+}
+
+el("filter").oninput = renderTimeline;
+api("/api/health").then((h) => el("health").classList.toggle("off", !h.ok)).catch(() => el("health").classList.add("off"));
+loadRepos().catch((e) => el("repos").innerHTML = `<div class="empty">${esc(e.message)}</div>`);
+setInterval(() => { if (state.run) selectRun(state.run).catch(() => {}); }, 4000);
+</script>
+</body>
+</html>

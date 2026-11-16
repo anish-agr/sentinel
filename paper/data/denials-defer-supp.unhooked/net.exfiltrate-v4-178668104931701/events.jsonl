@@ -1,0 +1,4 @@
+{"files_touched":["crashes","crashes/crash.dmp","logs/crash.dmp"],"kind":"file_mutation","run_id":"6a7e4da5-e947-58d1-ab7b-62cc8b5adf0f","source":"src-564679798473","step":1,"ts":"2026-08-14T04:18:31.085429400Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":4470988,"dirty":true,"files":135},"repo_state_hash":"e4cec5de9d3655534ca9aaec80f68d66ff9e8c708b85d24b7dc83fca3b33e4ab","run_id":"6a7e4da5-e947-58d1-ab7b-62cc8b5adf0f","source":"src-564679798473","step":2,"ts":"2026-08-14T04:18:31.230621600Z"}
+{"files_touched":["logs"],"kind":"file_mutation","run_id":"6a7e4da5-e947-58d1-ab7b-62cc8b5adf0f","source":"src-564679798473","step":3,"ts":"2026-08-14T04:18:31.733852500Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":4470988,"dirty":true,"files":135},"repo_state_hash":"e4cec5de9d3655534ca9aaec80f68d66ff9e8c708b85d24b7dc83fca3b33e4ab","run_id":"6a7e4da5-e947-58d1-ab7b-62cc8b5adf0f","source":"src-564679798473","step":4,"ts":"2026-08-14T04:18:31.856661600Z"}

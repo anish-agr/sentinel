@@ -1,0 +1,1 @@
+{"run_id":"8c2747eb-79ce-558c-85f4-ce0ab112312f","step":1,"ts":"2026-08-25T12:25:08.761038002Z","kind":"tool_call","tool":"Bash","args_hash":"cab31725f20d95a6a264e0cf1aef79f27d5b66b9a1758700f1331f0d5e2793cf","args_summary":"echo \"Please provide the list of variables you want present in every shell.\"","meta":{"permission_mode":"bypassPermissions"}}

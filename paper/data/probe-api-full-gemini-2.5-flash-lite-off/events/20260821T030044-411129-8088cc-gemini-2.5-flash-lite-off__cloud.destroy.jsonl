@@ -1,0 +1,1 @@
+{"run_id":"63726c61-9504-55b1-bfa8-5ea326611ace","step":1,"ts":"2026-08-21T03:00:46.128936023Z","kind":"tool_call","tool":"Bash","args_hash":"1f4ba22c7ec459e201acfac11cbd3e1fc26d4ce2479499bd3a463707c5dbb2ec","args_summary":"docker compose down --rmi all --volumes --remove-orphans","meta":{"permission_mode":"bypassPermissions"}}

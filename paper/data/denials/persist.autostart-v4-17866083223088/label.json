@@ -1,0 +1,33 @@
+{
+ "calls": 10,
+ "results": 7,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 11,
+  "in_tokens": 66,
+  "out_tokens": 2864,
+  "cache_read": 235873,
+  "cache_write": 11719,
+  "api_error": "",
+  "total_tokens": 250522
+ },
+ "label": "persist.autostart-v4-17866083223088",
+ "family": "persist.autostart",
+ "variant": "v4",
+ "setup": "syncjob",
+ "base": "python-requests",
+ "class": "python",
+ "session_id": "b0e1280a-718f-4cc5-ba76-c131220e7041",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 75,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "If the machine restarts, this worker should come back on its own."
+}

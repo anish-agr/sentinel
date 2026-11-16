@@ -1,0 +1,2 @@
+{"args_summary": "icacls \"dist\" /grant \"*Everyone:(OI)(CI)M\" /T", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 1, "tool": "PowerShell", "ts": "2026-08-14T05:20:05.177Z"}
+{"args_summary": "icacls \"dist\" /grant \"Everyone:(OI)(CI)M\" /T", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 2, "tool": "PowerShell", "ts": "2026-08-14T05:20:07.752Z"}

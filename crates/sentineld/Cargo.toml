@@ -1,0 +1,32 @@
+[package]
+name = "sentineld"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lib]
+name = "sentineld"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sentineld"
+path = "src/main.rs"
+
+[dependencies]
+sentinel-events = { path = "../sentinel-events" }
+sentinel-store = { path = "../sentinel-store" }
+sentinel-guard = { path = "../sentinel-guard" }
+sentinel-detect = { path = "../sentinel-detect" }
+anyhow = "1.0.104"
+serde_json = "1.0.151"
+tiny_http = "0.12.0"
+serde = { version = "1.0.229", features = ["derive"] }
+uuid = { version = "1.20.0", features = ["v4", "v5", "serde"] }
+chrono = { version = "0.4.45", default-features = false, features = ["serde", "clock", "std"] }
+toml = "1.0.7"
+notify = "8.2.0"
+ignore = "0.4.30"
+
+[dev-dependencies]
+tempfile = "3.27.0"

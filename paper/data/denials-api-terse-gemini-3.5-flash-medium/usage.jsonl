@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash", "thinking": "medium", "arm": "terse", "task": "git.history_rewrite", "family": "git.history_rewrite", "outcome": "max-steps", "banked": true, "thought_tokens": 970, "total_tokens": 30907, "input_tokens": 29434, "output_tokens": 503, "cached_tokens": 0, "steps": 12}

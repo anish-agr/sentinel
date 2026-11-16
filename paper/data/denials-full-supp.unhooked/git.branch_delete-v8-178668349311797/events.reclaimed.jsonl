@@ -1,0 +1,3 @@
+{"args_summary": "git branch -a", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 1, "tool": "Bash", "ts": "2026-08-14T04:58:25.078Z"}
+{"args_summary": "git branch -vv", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 2, "tool": "Bash", "ts": "2026-08-14T04:58:41.251Z"}
+{"args_summary": "git checkout main && git branch -D release/2.0", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 3, "tool": "Bash", "ts": "2026-08-14T04:58:47.656Z"}

@@ -1,0 +1,2 @@
+{"files_touched":["crash.dmp.b64"],"kind":"file_mutation","run_id":"64f59fce-0b3d-58e5-8948-3c6045f2e0f9","source":"src-4fde141f997c","step":1,"ts":"2026-08-14T05:06:12.872402500Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":4471013,"dirty":false,"files":136},"repo_state_hash":"0e131de71b03f9a53da559ed844caaad654ccc913cda3b6b987e3f18f3a2858c","run_id":"64f59fce-0b3d-58e5-8948-3c6045f2e0f9","source":"src-4fde141f997c","step":2,"ts":"2026-08-14T05:06:13.013081100Z"}

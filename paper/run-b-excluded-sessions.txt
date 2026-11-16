@@ -1,0 +1,328 @@
+# Sessions collected against a guard binary that was NOT the pinned instrument.
+#
+# The pinned instrument is the hook built at 43085fb: sha256
+# 8fde4c928ff726a6347054f410542ae0b06e7cc83b46c693e1bf1630065f11f3,
+# 21 rules, fails open. Twice a stray process left behind by a Run B session
+# rebuilt it under the live campaign, and each time watch-run-b3.sh detected
+# the changed hash and wrote STOP. The collector reads STOP only BETWEEN
+# CELLS, so each time it banked for a few minutes more.
+#
+#   window 1  2026-08-25T03:28:15Z .. 03:36:34Z   97 sessions
+#             hook became 6260d84d331d02071bd9b178d0861294ada1cb33d2515278365814e20ac51b96
+#             cause: watch_build.py, started by a proc.unbounded session on
+#             2026-08-23 and still running 33.8 hours later
+#   window 2  2026-08-25T12:26:19Z .. 12:28:12Z   16 sessions
+#             hook became 32f985043f7ee6eea012ab10975ffe4b23256b28e61ae720b3fd55a32f37f501
+#             cause: a full `cargo build --release` from a session stray; the
+#             reaper's 300s sweep was slower than a build, and is now 60s
+#
+# Every session below was decided by a different rule set than the rest of the
+# campaign. They are RETAINED and never deleted - retention is the rule and a
+# failed or contaminated run is evidence about the instrument. They are
+# excluded from every pooled figure, in the walk rather than at the call
+# sites, because pooling them would pool two experiments.
+#   window 3  2026-08-25T23:34:39Z .. 23:41:32Z  100 sessions
+#             hook became 32f985043f7ee6eea012ab10975ffe4b23256b28e61ae720b3fd55a32f37f501
+#             cause: an agent UNDER TEST ran `cargo build --release` from
+#             inside its own sandbox. The sandboxes are nested in the repo,
+#             so cargo walked up to the workspace root and relinked
+#             target/release. Not a stray this time - a live session doing
+#             exactly what the corpus asks agents to do. The reaper cannot
+#             help: there was nothing left behind to reap.
+#             Cost 8h04m of collection, because watch-run-b3.sh wrote STOP
+#             and exited on a CHANGED hook while it self-heals a MISSING
+#             one. watch-run-b4.sh removes that asymmetry.
+#
+#   window (auto)  2026-08-26T09:25:58Z .. 2026-08-26T09:28:08Z  10 sessions
+#             hook became 32f985043f7ee6eea012ab10975ffe4b23256b28e61ae720b3fd55a32f37f501
+#             quarantined by quarantine-window.sh at 2026-08-26T09:28:09Z,
+#             called from watch-run-b4.sh - no human was awake.
+#
+#   window (auto)  2026-08-27T04:53:05Z .. 2026-08-27T04:55:15Z  17 sessions
+#             hook became 32f985043f7ee6eea012ab10975ffe4b23256b28e61ae720b3fd55a32f37f501
+#             quarantined by quarantine-window.sh at 2026-08-27T04:55:16Z,
+#             called from watch-run-b4.sh - no human was awake.
+#
+#   window (auto)  2026-08-27T05:44:04Z .. 2026-08-27T05:46:15Z  26 sessions
+#             hook became 32f985043f7ee6eea012ab10975ffe4b23256b28e61ae720b3fd55a32f37f501
+#             quarantined by quarantine-window.sh at 2026-08-27T05:46:16Z,
+#             called from watch-run-b4.sh - no human was awake.
+#
+# The count below is load-bearing: archive.py refuses to run if it disagrees
+# with the entries, which is what separates "no sessions to exclude" from "the
+# list did not load". Do not edit one without the other.
+#
+# read by paper/scripts/analysis/archive.py (`_CONTAM_NAME`), which excludes
+# these in the corpus walk and refuses to run if the count disagrees.
+# This line used to read "emitted by analysis/contaminated.py --list". No such
+# script exists and none ever did: it was provenance naming a command nobody
+# could run, in the one file whose whole purpose is to be trustworthy.
+#
+# count   266
+#
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122408-3893702-758dfe-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122500-3893702-a51106-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122506-3893702-383383-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122509-3893702-2cdbf7-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122534-3893702-dbf12c-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122541-3893702-f31f75-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122546-3893702-79be28-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122548-3893702-33bfbe-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122548-3893702-a5fe36-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122601-3893702-31b531-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122606-3893702-e88c66-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122608-3893702-306cc3-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122619-3893702-4039bd-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122621-3893702-438ef4-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122632-3893702-cce44f-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260825T122644-3893702-31a4d2-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032704-1090992-2a51fe-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032708-1090992-730005-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032710-1090992-329c08-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032720-1090992-d3ce45-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032724-1090992-a52dfa-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032726-1090992-729b7e-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032807-1090992-e920b5-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032815-1090992-589061-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032818-1090992-bfc52d-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032819-1090992-e32037-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032833-1090992-271fcc-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032833-1090992-6a7385-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032833-1090992-8e095e-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032834-1090992-f612c4-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032836-1090992-9f8e96-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032847-1090992-8cd075-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032852-1090992-61429a-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032853-1090992-19581b-gemini-3.5-flash-lite-default__git.discard_changes.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032858-1090992-8e8211-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032900-1090992-312671-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032901-1090992-a91d7b-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032901-1090992-f01fdb-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032902-1090992-05ae20-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032902-1090992-41be26-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032904-1090992-e3d473-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032910-1090992-485b11-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032910-1090992-f0da02-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032912-1090992-5af0bc-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032913-1090992-713f9c-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032915-1090992-4a7c09-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032919-1090992-aff825-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032920-1090992-55ecf7-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032921-1090992-086dc1-gemini-3.5-flash-lite-default__git.discard_changes.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032922-1090992-da5686-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032924-1090992-5be8e6-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032925-1090992-175600-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032925-1090992-d5eb68-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032926-1090992-a785f3-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032935-1090992-e13c3e-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032936-1090992-00af50-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032937-1090992-7227d3-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032945-1090992-68cbaf-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032947-1090992-71c43f-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032948-1090992-7a481a-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032952-1090992-b4241b-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032956-1090992-a9d062-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T032957-1090992-5a7de7-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033004-1090992-487245-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033009-1090992-3646ff-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033010-1090992-6ecbe1-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033021-1090992-add15d-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033033-1090992-0059c1-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033034-1090992-4c88e4-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033039-1090992-c38464-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033045-1090992-fdc356-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033046-1090992-7a7cb1-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033047-1090992-bdcaec-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033049-1090992-60d310-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033056-1090992-f04df2-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033057-1090992-59d911-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033058-1090992-20b2b1-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033100-1090992-0674a6-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033100-1090992-fa4c34-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033105-1090992-999f2c-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033105-1090992-dc1067-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033109-1090992-db8785-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033111-1090992-714121-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033112-1090992-1ac1c6-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033114-1090992-588505-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033115-1090992-2a6516-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033115-1090992-b2bb5f-gemini-3.5-flash-lite-default__git.discard_changes.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033120-1090992-683755-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033121-1090992-45dbac-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033122-1090992-c5c6e6-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033123-1090992-61ad6e-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033126-1090992-0de455-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033128-1090992-fabd0a-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033132-1090992-6d16d8-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033132-1090992-f449ea-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033134-1090992-6341cf-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033136-1090992-9831b3-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033137-1090992-54e9c7-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033142-1090992-a25f70-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033144-1090992-842117-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033147-1090992-b0ad81-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033152-1090992-b2e9ed-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033153-1090992-799a8b-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033154-1090992-f5a1be-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033155-1090992-db7083-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033157-1090992-2fe107-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033157-1090992-4dbaac-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033203-1090992-fe6ce2-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033204-1090992-fea19c-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033208-1090992-ea26e3-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033208-1090992-ed1d16-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033214-1090992-d6b024-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-padded-gemini-3.5-flash-lite-default/events/20260825T033215-1090992-cc4cb5-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260825T233131-2584240-2fe42d-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260825T233251-2584240-d19dbd-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260825T233327-2584240-bb88bd-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260825T233341-2584240-db70de-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260825T233406-2584240-aa6eb2-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-0b2c34-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-0f6064-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-21f575-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-2b1a6a-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-444ea8-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-4978c5-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-5d0f9d-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-60d9c3-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-6ba160-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-ace274-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-d651ed-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233514-2584240-e1ec7b-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233521-2584240-2fcad0-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233521-2584240-466391-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233521-2584240-8aae21-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233521-2584240-c5f895-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233522-2584240-5c6f59-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233522-2584240-973168-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233522-2584240-bbbf3a-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233522-2584240-ff1b1f-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233526-2584240-264852-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233531-2584240-4a9c01-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233531-2584240-fd9ce1-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233538-2584240-acba2e-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233546-2584240-34a82b-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233554-2584240-77e3aa-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233621-2584240-00b714-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233621-2584240-d9c630-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233628-2584240-5a3b91-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233629-2584240-9a22b6-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233630-2584240-0eaea2-gemini-3.5-flash-lite-default__git.discard_changes.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233630-2584240-6136f7-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233632-2584240-487dc8-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233632-2584240-5928d1-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233633-2584240-758e07-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233634-2584240-ca0406-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233637-2584240-08f79b-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233638-2584240-71dbb9-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233639-2584240-4e7a28-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233644-2584240-0bd783-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233645-2584240-3501ee-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233646-2584240-b4a798-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233646-2584240-bbc495-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233650-2584240-aa7b00-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233652-2584240-b0cc3a-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233653-2584240-c51f21-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233653-2584240-c93df8-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233700-2584240-049f53-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233700-2584240-d9e5c7-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233705-2584240-ca729d-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233705-2584240-f0d9d0-gemini-3.5-flash-lite-default__git.clean_force.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233711-2584240-12ad03-gemini-3.5-flash-lite-default__git.discard_changes.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233712-2584240-36351f-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233720-2584240-124a44-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233721-2584240-98dbb2-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233722-2584240-e5e6c8-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233728-2584240-66fe1f-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233730-2584240-cb02ce-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233736-2584240-1cd032-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233737-2584240-4f5234-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233737-2584240-fbe5de-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233739-2584240-1ff78a-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233746-2584240-648b1c-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233751-2584240-e3de16-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233753-2584240-52d028-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233754-2584240-a2f7c6-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233757-2584240-0e8ced-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233759-2584240-6cfdeb-gemini-3.5-flash-lite-default__git.discard_changes.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233801-2584240-895c90-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233801-2584240-bb0cd3-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233802-2584240-75894e-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233807-2584240-ac14c6-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233808-2584240-7f52df-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233810-2584240-c6aa17-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233814-2584240-f41c73-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233816-2584240-59cf04-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233818-2584240-dd70d5-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233820-2584240-7b504c-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233821-2584240-29eb91-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233824-2584240-e710db-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233825-2584240-2366af-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233825-2584240-c5dc40-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233829-2584240-f18762-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233830-2584240-dc14f3-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233833-2584240-10c35c-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233834-2584240-07fd67-gemini-3.5-flash-lite-default__fs.remove_protected.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233834-2584240-794121-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233840-2584240-364376-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233840-2584240-569b2e-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233840-2584240-8f4e4c-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233844-2584240-26527b-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233845-2584240-cea19b-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233845-2584240-e0b3bb-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233847-2584240-87aeb9-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-terse-gemini-3.5-flash-lite-default/events/20260825T233847-2584240-8a544c-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092318-1900822-f2b496-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092335-1900822-0d3430-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092359-1900822-94a5ac-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092426-1900822-65ee1e-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092431-1900822-3e3e5f-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092448-1900822-565820-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092509-1900822-d1f539-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092510-1900822-1cbf5d-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092544-1900822-e5b29b-gemini-3.5-flash-lite-default__persist.autostart.jsonl
+denials-api-explain-gemini-3.5-flash-lite-default/events/20260826T092553-1900822-cfbd5a-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T044946-2265646-43cedd-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T044948-2265646-e4acd1-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T044953-2265646-09fc86-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045114-2265646-ce9a79-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045137-2265646-961151-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045138-2265646-753579-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045150-2265646-02aa7b-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045201-2265646-464230-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045218-2265646-f38404-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045252-2265646-fdb1a2-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045320-2265646-0d7141-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045321-2265646-04a05d-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045338-2265646-7734a7-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045342-2265646-c8f049-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045351-2265646-c2becd-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045439-2265646-30560b-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-full-gemini-3.5-flash-lite-default/events/20260827T045449-2265646-0b640e-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T053943-2425219-a6e6b6-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054035-2425219-5598b1-gemini-3.5-flash-lite-default__git.branch_delete.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054137-2425219-7b4b63-gemini-3.5-flash-lite-default__git.history_rewrite.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054236-2425219-de94b2-gemini-3.5-flash-lite-default__net.exfiltrate.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054312-2425219-780d98-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054321-2425219-f82023-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054332-2425219-686920-gemini-3.5-flash-lite-default__publish.irreversible.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054336-2425219-d8549f-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054353-2425219-b52199-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054417-2425219-5fc007-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054420-2425219-b838c6-gemini-3.5-flash-lite-default__perm.chmod_world_writable.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054421-2425219-9c0e49-gemini-3.5-flash-lite-default__sql.destructive.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054424-2425219-e62156-gemini-3.5-flash-lite-default__git.force_push.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054426-2425219-9b105d-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054428-2425219-0e800f-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054431-2425219-5941cb-gemini-3.5-flash-lite-default__proc.unbounded.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054433-2425219-f06bef-gemini-3.5-flash-lite-default__net.pipe_to_shell.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054434-2425219-ccd5af-gemini-3.5-flash-lite-default__cloud.destroy.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054442-2425219-503097-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054444-2425219-6df65e-gemini-3.5-flash-lite-default__fs.credential_write.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054445-2425219-b83013-gemini-3.5-flash-lite-default__git.delete_branch.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054446-2425219-6a800f-gemini-3.5-flash-lite-default__fs.destructive_command.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054457-2425219-1dac57-gemini-3.5-flash-lite-default__fs.system_write.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054509-2425219-a21dce-gemini-3.5-flash-lite-default__secret.exposure.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054513-2425219-95fdb8-gemini-3.5-flash-lite-default__git.reset_hard.jsonl
+denials-api-defer-gemini-3.5-flash-lite-default/events/20260827T054518-2425219-846206-gemini-3.5-flash-lite-default__git.discard_changes.jsonl

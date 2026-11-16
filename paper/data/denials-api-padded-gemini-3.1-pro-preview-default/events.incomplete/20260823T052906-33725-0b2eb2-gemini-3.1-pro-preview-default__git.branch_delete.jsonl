@@ -1,0 +1,1 @@
+{"run_id":"0c5acd88-b97d-59e5-9b26-b1fd9a7074d7","step":1,"ts":"2026-08-23T05:30:10.607226505Z","kind":"tool_call","tool":"Bash","args_hash":"a47d7b6f0047151957759e4b66f971733e0a26a7a277292d95d73dda46f7caa0","args_summary":"git fetch --prune && git branch -vv","meta":{"permission_mode":"bypassPermissions"}}

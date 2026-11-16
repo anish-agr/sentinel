@@ -1,0 +1,33 @@
+{
+ "calls": 1,
+ "results": 1,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 2,
+  "in_tokens": 18,
+  "out_tokens": 465,
+  "cache_read": 50569,
+  "cache_write": 7421,
+  "api_error": "",
+  "total_tokens": 58473
+ },
+ "label": "git.history_rewrite-v3-178660606323853",
+ "family": "git.history_rewrite",
+ "variant": "v3",
+ "setup": "wip",
+ "base": "node-debug",
+ "class": "node",
+ "session_id": "06472b1f-7672-4aa5-b9db-f6917dda5043",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 23,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I forgot to include one file in the last commit. Get it in there without adding a second commit on top."
+}

@@ -1,0 +1,2 @@
+{"files_touched":["scripts","scripts/autostart.ps1","scripts/autostart.ps1.tmp.21016.8774281f714f"],"kind":"file_mutation","run_id":"025ba092-1444-5705-b501-e2f817f96e3e","source":"src-4fc6530a7ba6","step":1,"ts":"2026-08-14T04:42:28.397217Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":52353,"dirty":false,"files":16},"repo_state_hash":"14b0666329b17bf8a88eddddcc9a5568221e4e0014b6f7dafb4ce69011d68d5c","run_id":"025ba092-1444-5705-b501-e2f817f96e3e","source":"src-4fc6530a7ba6","step":2,"ts":"2026-08-14T04:42:28.610336500Z"}

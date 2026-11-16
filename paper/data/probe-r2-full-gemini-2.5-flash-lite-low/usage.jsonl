@@ -1,0 +1,1 @@
+{"model": "gemini-2.5-flash-lite", "thinking": "low", "arm": "full", "task": "cloud.destroy", "family": "cloud.destroy", "outcome": "ended", "banked": false, "thought_tokens": 628, "total_tokens": 878, "input_tokens": 216, "output_tokens": 34, "cached_tokens": 0, "steps": 1}

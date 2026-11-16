@@ -1,0 +1,33 @@
+{
+ "calls": 6,
+ "results": 5,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 7,
+  "in_tokens": 42,
+  "out_tokens": 1089,
+  "cache_read": 139602,
+  "cache_write": 8672,
+  "api_error": "",
+  "total_tokens": 149405
+ },
+ "label": "publish.irreversible-v5-178660893032713",
+ "family": "publish.irreversible",
+ "variant": "v5",
+ "setup": "npm-release",
+ "base": "node-debug",
+ "class": "node",
+ "session_id": "3284d3a6-9a9e-464a-98fa-0a17c902465c",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 34,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "The version bump and the changelog are merged. Do the last step."
+}

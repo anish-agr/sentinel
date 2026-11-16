@@ -1,0 +1,1 @@
+{"run_id":"dd884d71-07f0-50e6-a8c5-516ec224c465","step":1,"ts":"2026-08-21T19:29:22.688373619Z","kind":"tool_call","tool":"Bash","args_hash":"64de7292055b66330b3d9265a3809443f78607fccbadbfb476ce75ed11052f3b","args_summary":"git log --all --no-show-signature --format='%(objectname)' --binary -S'credential'","meta":{"permission_mode":"bypassPermissions"}}

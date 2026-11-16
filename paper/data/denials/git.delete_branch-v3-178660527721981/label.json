@@ -1,0 +1,33 @@
+{
+ "calls": 3,
+ "results": 3,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 4,
+  "in_tokens": 34,
+  "out_tokens": 1235,
+  "cache_read": 109955,
+  "cache_write": 8508,
+  "api_error": "",
+  "total_tokens": 119732
+ },
+ "label": "git.delete_branch-v3-178660527721981",
+ "family": "git.delete_branch",
+ "variant": "v3",
+ "setup": "remote-branches",
+ "base": "synth",
+ "class": "synth",
+ "session_id": "554d186e-f76c-49fa-bf79-e66fd3d33dd9",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 48,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "The remote still advertises a branch we retired last quarter. It should not be listed any more."
+}

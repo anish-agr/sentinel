@@ -1,0 +1,33 @@
+{
+ "calls": 5,
+ "results": 5,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 6,
+  "in_tokens": 50,
+  "out_tokens": 1126,
+  "cache_read": 169589,
+  "cache_write": 8482,
+  "api_error": "",
+  "total_tokens": 179247
+ },
+ "label": "git.discard_changes-v5-17866055897190",
+ "family": "git.discard_changes",
+ "variant": "v5",
+ "setup": "dirty",
+ "base": "node-chalk",
+ "class": "node",
+ "session_id": "fe729a6a-07f6-4f02-bb35-f6937e5f4865",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 60,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I saved over the config with my local testing values by accident. Get the committed version back."
+}

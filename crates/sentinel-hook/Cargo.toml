@@ -1,0 +1,24 @@
+[package]
+name = "sentinel-hook"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sentinel-hook"
+path = "src/main.rs"
+
+[dependencies]
+serde_json = "1.0.151"
+
+[dev-dependencies]
+# Dev-only. The refusal RENDERER lives here and the refusal REASONS live
+# in the guard, and the property that no `explain` or `defer` refusal
+# offers a way through is a property of the two composed. It was checked
+# on one hand-written string that is not any rule's reason, plus a static
+# scan of the guard's source literals -- neither of which sees a reason
+# composed at runtime from a path, a host or the agent's own command
+# text. `denial_style_tests` now renders every rule's real reason.
+sentinel-guard = { path = "../sentinel-guard" }
+tempfile = "3.27.0"

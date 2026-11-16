@@ -1,0 +1,17 @@
+# The high-water mark of the off-instrument exclusion ledger.
+#
+# `run-b-excluded-sessions.txt` may only ever GROW. It grows when an agent
+# under test rebuilds the pinned guard and watch-run-b4.sh quarantines the
+# sessions banked in the window; quarantine-window.sh raises this number in the
+# same operation. It must never shrink: an entry removed is a session collected
+# against the wrong rule set silently readmitted to every pooled figure.
+#
+# verify_all.py checks the ledger against this file rather than against a
+# literal in its own source. The literal went stale the first time the
+# watchdog recovered unattended - it said 213 while the ledger held 223, so ten
+# exclusions could have been deleted with the suite still green. Two
+# independent audit rounds demonstrated exactly that.
+#
+# Raising this by hand is not a fix for a failing check. If the ledger is
+# smaller than this number, find out what deleted the entries.
+266

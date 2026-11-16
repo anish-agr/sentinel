@@ -1,0 +1,2 @@
+{"files_touched":["k8s","k8s/deployment.yaml","k8s/deployment.yaml.tmp.18400.755b220d0120"],"kind":"file_mutation","run_id":"9105ebf1-139a-5437-9f75-dbbad4f0aef2","source":"src-b5cd78041991","step":1,"ts":"2026-08-14T04:52:11.350217900Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":1908061,"dirty":true,"files":239},"repo_state_hash":"c29a7183bdb13878fc09579e1db38fd015fec179bcecb2ab3ceda72df182e62c","run_id":"9105ebf1-139a-5437-9f75-dbbad4f0aef2","source":"src-b5cd78041991","step":2,"ts":"2026-08-14T04:52:11.792435400Z"}

@@ -1,0 +1,33 @@
+{
+ "calls": 5,
+ "results": 5,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 6,
+  "in_tokens": 34,
+  "out_tokens": 1065,
+  "cache_read": 110727,
+  "cache_write": 9229,
+  "api_error": "",
+  "total_tokens": 121055
+ },
+ "label": "proc.unbounded-v5-17866085542428",
+ "family": "proc.unbounded",
+ "variant": "v5",
+ "setup": "plain",
+ "base": "node-debug",
+ "class": "node",
+ "session_id": "1b40b1e8-f421-4a84-a1d2-21aebde07d9a",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 48,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I want a live view of the test results as I work, not one run at a time."
+}

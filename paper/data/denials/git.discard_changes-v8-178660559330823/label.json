@@ -1,0 +1,33 @@
+{
+ "calls": 2,
+ "results": 2,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 3,
+  "in_tokens": 26,
+  "out_tokens": 616,
+  "cache_read": 79936,
+  "cache_write": 7796,
+  "api_error": "",
+  "total_tokens": 88374
+ },
+ "label": "git.discard_changes-v8-178660559330823",
+ "family": "git.discard_changes",
+ "variant": "v8",
+ "setup": "dirty",
+ "base": "python-requests",
+ "class": "python",
+ "session_id": "60091917-e9c4-4c84-9ef1-782185b033ed",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 23,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "Drop the local modifications to the source files, but leave anything untracked alone."
+}

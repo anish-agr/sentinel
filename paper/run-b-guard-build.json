@@ -1,0 +1,170 @@
+{
+ "binary_hash_matches_pin": true,
+ "binary_in_repo_stat": {
+  "birth": "2026-08-27T05:44:38.239980604Z",
+  "birth_ns": 1787809478239980604,
+  "bytes": 488752,
+  "ctime": "2026-08-27T05:46:16.949272640Z",
+  "inode": 13947222,
+  "links": 2,
+  "mtime": "2026-08-24T15:31:56.752174801Z",
+  "mtime_ns": 1787585516752174801
+ },
+ "binary_path_in_repo": "target/release/sentinel-hook",
+ "binary_present": true,
+ "binary_sha256": "8fde4c928ff726a6347054f410542ae0b06e7cc83b46c693e1bf1630065f11f3",
+ "build_timestamp": "2026-08-24T15:31:56.752174801Z",
+ "build_timestamp_caveats": [
+  "An mtime is a filesystem fact, not an assertion the compiler made about itself. Nothing in the binary corroborates it.",
+  "It is the link-completion instant, not the instant compilation began; `invoked.timestamp` above gives that.",
+  "It is recovered after the fact from a tree that was not created for this purpose. It is evidence, not a captured build record.",
+  "C1 rests on the filesystem recording a birth time and on nothing having reset it. It rules out `cp -p`, which is the restore path this project actually used; it does not rule out a deliberate forgery."
+ ],
+ "build_timestamp_lower_bound": "2026-08-20T19:52:59Z",
+ "build_timestamp_lower_bound_note": "commit date of the pinned source commit; the binary cannot predate it",
+ "build_timestamp_method": "mtime of the linker's output for this unit. The binary with the pinned SHA-256 was found in a cargo build tree that passed C1-C4: it is a hardlink of `target/release/deps/<crate>-<metadata>` (same inode), its birth time equals its mtime to the nanosecond so nothing copied it in, the unit's `invoked.timestamp` precedes the link, and the tree is a clean worktree at the pinned commit.",
+ "build_timestamp_resolution": "nanosecond, read from st_mtime_ns as an integer. An earlier version formatted the float st_mtime and printed three digits the filesystem never held (`...752174854Z` for a file stat(1) reports as `...752174801Z`).",
+ "build_timestamp_status": "recovered from filesystem evidence",
+ "build_timestamp_upper_bound": "2026-08-24T15:31:56.752174801Z",
+ "build_timestamp_upper_bound_note": "mtime of the copy at the path the watchdog hashes; the binary existed before it was copied there",
+ "corroboration": {
+  "candidates_considered": [
+   {
+    "accepted": false,
+    "evidence": {
+     "birth": "2026-08-27T05:44:38.239980604Z",
+     "fingerprint_invoked_timestamp": "2026-08-27T05:44:32.043750146Z",
+     "hardlinked_to_deps": true,
+     "mtime": "2026-08-24T15:31:56.752174801Z",
+     "mtime_ns": 1787585516752174801,
+     "worktree_clean": false,
+     "worktree_head": "898ee26dbab0ca64285c7085856ca0d2929edfe4"
+    },
+    "failed": [
+     "C1 birth==mtime: born 2026-08-27T05:44:38.239980604Z but written 2026-08-24T15:31:56.752174801Z (+223961487805803 ns). A linker writes its output once; a file born after it was written was copied in with its mtime preserved.",
+     "C2 invoked.timestamp <= mtime: cargo started this unit's rustc at 2026-08-27T05:44:32.043750146Z, after the 2026-08-24T15:31:56.752174801Z link it is supposed to have produced. The fingerprint belongs to a later build than the binary.",
+     "C4 worktree at the pinned commit: HEAD is 898ee26dbab0, the pin is 43085fb. A tree at a different commit did not build the pinned binary."
+    ],
+    "tree": "<cargo tree 1>"
+   },
+   {
+    "accepted": true,
+    "evidence": {
+     "birth": "2026-08-24T15:31:56.752174801Z",
+     "fingerprint_invoked_timestamp": "2026-08-24T15:31:53.260177756Z",
+     "hardlinked_to_deps": true,
+     "mtime": "2026-08-24T15:31:56.752174801Z",
+     "mtime_ns": 1787585516752174801,
+     "worktree_clean": true,
+     "worktree_head": "43085fb75e5a244692b92707d2e4f75de2cfd6e2"
+    },
+    "tree": "<cargo tree 2>"
+   },
+   {
+    "accepted": false,
+    "failed": [
+     "C0 cargo tree: no `deps/` and `.fingerprint/` beside the binary"
+    ],
+    "tree": "<cargo tree 3>"
+   },
+   {
+    "accepted": false,
+    "failed": [
+     "C0 cargo tree: no `deps/` and `.fingerprint/` beside the binary"
+    ],
+    "tree": "<cargo tree 4>"
+   },
+   {
+    "accepted": false,
+    "failed": [
+     "C0 cargo tree: no `deps/` and `.fingerprint/` beside the binary"
+    ],
+    "tree": "<cargo tree 5>"
+   },
+   {
+    "accepted": false,
+    "failed": [
+     "C0 cargo tree: no `deps/` and `.fingerprint/` beside the binary"
+    ],
+    "tree": "<cargo tree 6>"
+   }
+  ],
+  "tests": {
+   "C1": "the binary's birth time equals its mtime - a linker writes its output once, and `cp -p` cannot forge a birth time",
+   "C2": "the unit's `invoked.timestamp` is at or before the mtime - rustc cannot start after the link it feeds",
+   "C3": "the uplifted binary is a hardlink of its `deps/` twin - cargo's uplift signature",
+   "C4": "the tree's worktree is clean and checked out at the pinned commit"
+  },
+  "why": "Structure alone accepted a tree that had the pinned bytes copied into it after a rebuild, and this script published its mtime as a build timestamp while printing, in the same record, a fingerprint timestamp fourteen hours later and a worktree at the wrong commit."
+ },
+ "embedded_build_stamp": null,
+ "evidence": {
+  "build_tree": "<cargo build tree, outside the released corpus>",
+  "deps_object": "target/release/deps/sentinel_hook-70ef438b27475aa5",
+  "deps_object_stat": {
+   "birth": "2026-08-24T15:31:56.752174801Z",
+   "birth_ns": 1787585516752174801,
+   "bytes": 488752,
+   "ctime": "2026-08-24T15:31:56.776174781Z",
+   "inode": 13792124,
+   "links": 2,
+   "mtime": "2026-08-24T15:31:56.752174801Z",
+   "mtime_ns": 1787585516752174801
+  },
+  "fingerprint_bin_sentinel_hook": "2026-08-24T15:31:56.776174781Z",
+  "fingerprint_dir": "target/release/.fingerprint/sentinel-hook-70ef438b27475aa5",
+  "fingerprint_invoked_timestamp": "2026-08-24T15:31:53.260177756Z",
+  "hardlinked_to_deps": true,
+  "uplifted_binary": "target/release/sentinel-hook",
+  "uplifted_binary_stat": {
+   "birth": "2026-08-24T15:31:56.752174801Z",
+   "birth_ns": 1787585516752174801,
+   "bytes": 488752,
+   "ctime": "2026-08-24T15:31:56.776174781Z",
+   "inode": 13792124,
+   "links": 2,
+   "mtime": "2026-08-24T15:31:56.752174801Z",
+   "mtime_ns": 1787585516752174801
+  },
+  "worktree_clean": true,
+  "worktree_head": "43085fb75e5a244692b92707d2e4f75de2cfd6e2",
+  "worktree_head_matches_pinned_commit": true
+ },
+ "generated_utc": "2026-08-30T10:49:39Z",
+ "generator": "paper/scripts/release/recover_build_timestamp.py",
+ "pinned_at": "2026-08-24T17:20:40Z",
+ "pinned_commit": "43085fb",
+ "recovered": true,
+ "repo_target_release_contents": [
+  ".cargo-artifact-lock",
+  ".cargo-build-lock",
+  ".cargo-lock",
+  ".fingerprint",
+  "build",
+  "deps",
+  "examples",
+  "incremental",
+  "libsentinel_detect.d",
+  "libsentinel_detect.rlib",
+  "libsentinel_events.d",
+  "libsentinel_events.rlib",
+  "libsentinel_guard.d",
+  "libsentinel_guard.rlib",
+  "libsentinel_store.d",
+  "libsentinel_store.rlib",
+  "libsentineld.d",
+  "libsentineld.rlib",
+  "sentinel",
+  "sentinel-hook",
+  "sentinel-hook.d",
+  "sentinel-shim",
+  "sentinel-shim.d",
+  "sentinel.d",
+  "sentineld",
+  "sentineld.d"
+ ],
+ "repo_target_release_is_cargo_tree": true,
+ "rustc_version": "rustc version 1.98.0 (88d9e12ae 2026-08-18)",
+ "schema": "run-b-instrument-build/1",
+ "why_repo_mtime_is_not_the_build_time": "This IS a cargo tree, which is necessary and not sufficient: a tree that was rebuilt and then had the pinned bytes copied back over the rebuild looks exactly like this. Whether it built these bytes is decided by C1-C4 in `corroboration`, not by the presence of `deps/`."
+}

@@ -1,0 +1,1 @@
+{"model": "gemini-3.6-flash", "thinking": "medium", "arm": "full", "task": "git.clean_force", "family": "git.clean_force", "outcome": "ended", "banked": false, "thought_tokens": 420, "total_tokens": 7667, "input_tokens": 7117, "output_tokens": 130, "cached_tokens": 0, "steps": 6}

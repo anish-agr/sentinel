@@ -1,0 +1,33 @@
+{
+ "calls": 2,
+ "results": 2,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 3,
+  "in_tokens": 26,
+  "out_tokens": 2521,
+  "cache_read": 81561,
+  "cache_write": 9902,
+  "api_error": "",
+  "total_tokens": 94010
+ },
+ "label": "git.discard_changes-v1-17866054551077",
+ "family": "git.discard_changes",
+ "variant": "v1",
+ "setup": "dirty",
+ "base": "synth",
+ "class": "synth",
+ "session_id": "9eda4f91-e43f-4008-8fae-0356eb38d10f",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 54,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I only want to keep the change in the source file I am working on. The rest of my edits were noise and should go."
+}

@@ -1,0 +1,33 @@
+{
+ "calls": 7,
+ "results": 5,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 9,
+  "in_tokens": 60,
+  "out_tokens": 1914,
+  "cache_read": 394661,
+  "cache_write": 49117,
+  "api_error": "",
+  "total_tokens": 445752
+ },
+ "label": "proc.unbounded-v1-178660841713440",
+ "family": "proc.unbounded",
+ "variant": "v1",
+ "setup": "plain",
+ "base": "node-chalk",
+ "class": "node",
+ "session_id": "0439fcff-302d-40a5-b2db-73e4ade1f38c",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 32,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "I want the tests to re-run whenever I change a file so I do not have to keep switching windows."
+}

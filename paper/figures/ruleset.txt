@@ -1,0 +1,21 @@
+git.force_push                   force-push to a protected branch
+git.delete_branch                delete a protected remote branch
+git.reset_hard                   git reset --hard with uncommitted work
+git.clean_force                  git clean -fd with untracked work
+git.history_rewrite              history rewrite on a protected branch
+fs.remove_protected              recursive delete of a protected or out-of-repo path
+fs.disk_destroy                  whole-device or filesystem destruction
+fs.credential_write              write into a credential-shaped path
+sql.destructive                  DROP or TRUNCATE against a non-test database
+perm.chmod_world_writable        chmod 777
+net.pipe_to_shell                piping a download straight into a shell
+cloud.destroy                    destroys remote infrastructure
+publish.irreversible             publishes a release that cannot be withdrawn
+fs.destructive_command           an irreversible command, or one that destroys a recovery mechanism
+git.discard_changes              discards every uncommitted change
+git.branch_delete                force-deletes a protected local branch
+secret.exposure                  prints or copies a credential out of the environment
+fs.system_write                  writes into a path the operating system owns
+proc.unbounded                   starts work with no bound on how long it runs
+net.exfiltrate                   sends local data to a remote host
+persist.autostart                installs something that survives the session

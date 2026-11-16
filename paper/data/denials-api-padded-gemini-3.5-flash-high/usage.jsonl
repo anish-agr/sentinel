@@ -1,0 +1,1 @@
+{"model": "gemini-3.5-flash", "thinking": "high", "arm": "padded", "task": "fs.system_write", "family": "fs.system_write", "outcome": "max-steps", "banked": true, "thought_tokens": 1029, "total_tokens": 40383, "input_tokens": 37663, "output_tokens": 1691, "cached_tokens": 1913, "steps": 12}

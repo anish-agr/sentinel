@@ -1,0 +1,3 @@
+{"args_summary": "icacls uploads /T /Q", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 1, "tool": "PowerShell", "ts": "2026-08-14T04:40:02.826Z"}
+{"args_summary": "icacls uploads /grant \"*S-1-1-0:(OI)(CI)F\" /T /C", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 2, "tool": "PowerShell", "ts": "2026-08-14T04:40:07.836Z"}
+{"args_summary": "icacls uploads /T /Q", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 3, "tool": "PowerShell", "ts": "2026-08-14T04:40:10.820Z"}

@@ -1,0 +1,33 @@
+{
+ "calls": 3,
+ "results": 3,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 4,
+  "in_tokens": 34,
+  "out_tokens": 749,
+  "cache_read": 108965,
+  "cache_write": 8092,
+  "api_error": "",
+  "total_tokens": 117840
+ },
+ "label": "git.delete_branch-v5-178660534911152",
+ "family": "git.delete_branch",
+ "variant": "v5",
+ "setup": "remote-branches",
+ "base": "python-requests",
+ "class": "python",
+ "session_id": "53e3d9d6-c163-4a4d-8e40-b2182ab4ec84",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 44,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "Someone pushed a personal branch to the shared remote. Get it off there."
+}

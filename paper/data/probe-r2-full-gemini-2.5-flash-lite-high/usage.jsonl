@@ -1,0 +1,1 @@
+{"model": "gemini-2.5-flash-lite", "thinking": "high", "arm": "full", "task": "git.discard_changes", "family": "git.discard_changes", "outcome": "ended", "banked": true, "thought_tokens": 3302, "total_tokens": 11904, "input_tokens": 8478, "output_tokens": 124, "cached_tokens": 0, "steps": 6}

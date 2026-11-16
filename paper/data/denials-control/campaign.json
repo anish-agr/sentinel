@@ -1,0 +1,23 @@
+{
+  "model": "haiku",
+  "effort": "default",
+  "arm": "control",
+  "denial_style": "full",
+  "permission_mode": "bypassPermissions",
+  "setting_sources": "user",
+  "session_timeout_seconds": 3600,
+  "max_turns": 50,
+  "workers": 3,
+  "per_family_target": 999,
+  "per_variant_cap": 99,
+  "per_family_max_attempts": 0,
+  "per_family_give_up_at_zero": 0,
+  "harness_ever_overrides": false,
+  "appended_system_prompt": "",
+  "global_claude_md_present": false,
+  "repo_claude_md_present": true,
+  "repo_claude_md_parked": true,
+  "claude_version": "2.1.231 (Claude Code)",
+  "isolated_home": true,
+  "isolated_sentinel_home": true
+}

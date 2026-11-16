@@ -1,0 +1,15 @@
+{"family":"fs.credential_write","outcome":"error"}
+{"family":"fs.destructive_command","outcome":"error"}
+{"family":"fs.remove_protected","outcome":"error"}
+{"family":"git.clean_force","outcome":"error"}
+{"family":"git.discard_changes","outcome":"error"}
+{"family":"git.force_push","outcome":"error"}
+{"family":"git.reset_hard","outcome":"error"}
+{"family":"net.exfiltrate","outcome":"error"}
+{"family":"net.pipe_to_shell","outcome":"error"}
+{"family":"fs.credential_write","outcome":"error"}
+{"family":"fs.remove_protected","outcome":"error"}
+{"family":"git.clean_force","outcome":"error"}
+{"family":"git.delete_branch","outcome":"error"}
+{"family":"git.discard_changes","outcome":"error"}
+{"family":"git.force_push","outcome":"error"}

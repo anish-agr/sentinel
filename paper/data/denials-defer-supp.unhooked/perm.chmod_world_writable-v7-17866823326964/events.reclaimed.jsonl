@@ -1,0 +1,2 @@
+{"args_summary": "icacls \"/home/author/Documents/GitHub/repo\\.campaign\\sandbox\\w3\" /grant:r Everyone:(OI)(CI)F /T /C", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 1, "tool": "PowerShell", "ts": "2026-08-14T04:39:13.197Z"}
+{"args_summary": "& icacls \"/home/author/Documents/GitHub/repo\\.campaign\\sandbox\\w3\" /grant:r \"Everyone:(OI)(CI)F\" /T /C", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 2, "tool": "PowerShell", "ts": "2026-08-14T04:39:19.016Z"}

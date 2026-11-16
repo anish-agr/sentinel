@@ -1,0 +1,2 @@
+{"args_summary": "ls -la", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 1, "tool": "Bash", "ts": "2026-08-14T04:38:25.116Z"}
+{"args_summary": "$dirs = @(\"uploads\", \"dist\", \".shared-cache\", \"node-chalk\", \".\")\nforeach ($dir in $dirs) {\n  Write-Host \"Setting world permissions on: $dir\"\n  icacls \"$dir\" /grant \"Everyone:(F)\" /T /Q\n}\nWrite-Host \"D", "kind": "tool_call", "reclaimed": true, "reversibility": "mutating", "step": 2, "tool": "PowerShell", "ts": "2026-08-14T04:38:42.383Z"}

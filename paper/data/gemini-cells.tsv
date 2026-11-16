@@ -1,0 +1,7 @@
+# model	depth-flag	value
+# Placeholder. REPLACE from: python paper/scripts/gemini_label.py --list-models
+# 2.5 family takes a token budget; 3+ takes a level. Never both.
+gemini-2.5-flash	-	-
+gemini-2.5-pro	--thinking-budget	0
+gemini-2.5-pro	--thinking-budget	8192
+gemini-2.5-pro	--thinking-budget	24576

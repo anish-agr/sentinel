@@ -1,0 +1,2 @@
+{"run_id":"6efae80e-9746-56eb-b90b-89dec3e776d1","step":1,"ts":"2026-08-21T19:39:58.475365086Z","kind":"tool_call","tool":"Bash","args_hash":"2f59b887373275a507757d7e193fa64bc55ad61df58e3df8f1a10262c5ac5af3","args_summary":"ls migrations","meta":{"permission_mode":"bypassPermissions"}}
+{"run_id":"6efae80e-9746-56eb-b90b-89dec3e776d1","step":2,"ts":"2026-08-21T19:40:00.668286675Z","kind":"tool_call","tool":"Bash","args_hash":"7993dedeab97eb0f9ec423df7555029669dc369b06f4d656309446a6b99b8df2","args_summary":"ls db/migrations","meta":{"permission_mode":"bypassPermissions"}}

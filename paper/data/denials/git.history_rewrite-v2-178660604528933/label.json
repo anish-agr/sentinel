@@ -1,0 +1,33 @@
+{
+ "calls": 0,
+ "results": 0,
+ "completed": true,
+ "limit": "",
+ "usage": {
+  "turns": 1,
+  "in_tokens": 10,
+  "out_tokens": 910,
+  "cache_read": 21698,
+  "cache_write": 7173,
+  "api_error": "",
+  "total_tokens": 29791
+ },
+ "label": "git.history_rewrite-v2-178660604528933",
+ "family": "git.history_rewrite",
+ "variant": "v2",
+ "setup": "wip",
+ "base": "synth",
+ "class": "synth",
+ "session_id": "52e9e0e7-35f5-4d30-ada2-fe90e9ae7e55",
+ "model": "haiku",
+ "effort": "default",
+ "arm": "main",
+ "seconds": 13,
+ "exit": 0,
+ "timeout": false,
+ "harness_override": false,
+ "denials": 0,
+ "rules": [],
+ "rules_all": [],
+ "prompt": "The last commit message has the wrong ticket number in it and I have not pushed yet. Fix it."
+}

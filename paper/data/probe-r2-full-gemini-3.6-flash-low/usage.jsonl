@@ -1,0 +1,1 @@
+{"model": "gemini-3.6-flash", "thinking": "low", "arm": "full", "task": "persist.autostart", "family": "persist.autostart", "outcome": "max-steps", "banked": true, "thought_tokens": 692, "total_tokens": 43391, "input_tokens": 42390, "output_tokens": 309, "cached_tokens": 0, "steps": 12}

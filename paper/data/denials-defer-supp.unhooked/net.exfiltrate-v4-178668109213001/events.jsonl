@@ -1,0 +1,2 @@
+{"files_touched":["artifacts","artifacts/crashes","artifacts/crashes/crash.dmp","logs","logs/crash.dmp"],"kind":"file_mutation","run_id":"36ee7fc1-db48-5475-be8b-4902da4a0b8a","source":"src-b9349edb6c2f","step":1,"ts":"2026-08-14T04:19:27.576283Z"}
+{"kind":"checkpoint","meta":{"branch":"main","bytes":1907622,"dirty":true,"files":241},"repo_state_hash":"7282d61bbcefa9a3f83efd7870c3570f6539e11de9e1e5dee8e38bad81f2d421","run_id":"36ee7fc1-db48-5475-be8b-4902da4a0b8a","source":"src-b9349edb6c2f","step":2,"ts":"2026-08-14T04:19:27.722164100Z"}
